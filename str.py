@@ -72,8 +72,7 @@ def sjf(liste_taches):
 		if i<taches_restantes
 		i+=1
 	return list_sjf
-	
-	
+#Fonction pour adapter les séquencements afin de les tracer	
 def suite_tache(liste_taches):
 	i=1
 	while i<len(liste_taches):
