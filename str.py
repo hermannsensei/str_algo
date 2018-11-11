@@ -1,4 +1,3 @@
-
 #importations 
 from processus import Tache 
 from random import randint
@@ -69,8 +68,8 @@ def sjf(liste_taches):
 		else:
 			set_temps_arrive(ltc)
 		ltc.append(liste_fcfs[i])
-		if i<taches_restantes
-		i+=1
+		if i<taches_restantes :
+			i+=1
 	return list_sjf
 	
 	
@@ -90,6 +89,28 @@ def diagramme_gant(liste_taches):
 	plt(arivees,"r",linewidth=10)
 
 
+def awt_fcfs(liste_taches):
+	i=1
+	liste_taches[0].waiting_time=0
+	while i<len(liste_taches) :
+		j=0
+		temp_time=0
+		while j<=i :
+			temp_time += liste_taches[j].duree
+			j+=1
+		liste_taches[i].waiting_time = temp_time-liste_taches[i].arivee
+		i+=1
+	return liste_taches
+
+def average_wt(liste_taches):
+	i=0
+	somme = 0
+	while i<len(liste_taches) :
+		somme+=liste_taches[i].waiting_time
+		i+=1
+	return somme/len(liste_taches)
+
+
 
 #programme principal
 liste = creationTacheAleatoire(3)
@@ -102,10 +123,16 @@ fcfs_list = fcfs(liste)
 for tache in fcfs_list:
 	print(tache)
 
+print("---Waiting Time ---")
+fcfs_list = fcfs(liste)
+for tache in awt_fcfs(fcfs_list):
+	print("{} |vWaiting Time {}".format(tache.nom,tache.waiting_time))
+print("AWT : {}".format(average_wt(awt_fcfs(fcfs_list))))
+ 
 # print('---Tache avec duree accumulée')
 # for tache in suite_tache(fcfs_list) :
 # 	print(tache)
 
-print('---Ordonnancement SJF---')
-for tache in sjf(fcfs_list) :
-	print(tache)
+# print('---Ordonnancement SJF---')
+# for tache in sjf(fcfs_list) :
+# 	print(tache)
